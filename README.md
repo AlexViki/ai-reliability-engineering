@@ -1,6 +1,3 @@
-# ai-reliability-engineering
-Practical guide to AI Reliability Engineering &amp; SRE. Covering Kubernetes cluster bootstrap, GitOps/GitLessOps, AI Gateways, and Agentic AI patterns. Focus on implementing AI agents, MCP, OpenTelemetry, and defining AI-specific SLOs like TTFT/TPOT for production-grade infrastructures.
-
 # AI Reliability Engineering (SRE for AI)
 
 This repository contains materials, configurations, and practical assignments for the **AI Reliability Engineering** intensive course. The program focuses on bridging the gap between classical Site Reliability Engineering and the evolving requirements of AI-driven systems.
