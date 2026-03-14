@@ -9,6 +9,10 @@ spec:
     spec:
       chart: agentgateway
       sourceRef:
-        kind: HelmRepository
+        kind: OCIRepository
         name: agentgateway
         namespace: flux-system
+      # sourceRef:
+      #   kind: HelmRepository
+      #   name: agentgateway
+      #   namespace: flux-system
