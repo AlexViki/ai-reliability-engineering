@@ -16,11 +16,12 @@ spec:
   targetNamespace: agentgateway-system
   install:
     crds: Create
-    # Wait for CRDs to be created
+    disableWait: true
     remediation:
       retries: 5
   upgrade:
     crds: CreateReplace
+    disableWait: true
   values: {}
   # Optional: Override values by uncommenting and modifying below
   # values:
