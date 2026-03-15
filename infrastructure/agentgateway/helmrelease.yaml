@@ -22,13 +22,18 @@ spec:
   upgrade:
     crds: CreateReplace
     disableWait: true
-  values: {}
-  # Optional: Override values by uncommenting and modifying below
-  # values:
-  #   resources:
-  #     limits:
-  #       memory: 512Mi
-  #       cpu: 500m
-  #     requests:
-  #       memory: 256Mi
-  #       cpu: 250m
+  values:
+    # Fix startup probe timeout issues
+    controller:
+      startupProbe:
+        initialDelaySeconds: 0
+        timeoutSeconds: 5
+        periodSeconds: 2
+        successThreshold: 1
+        failureThreshold: 120
+      readinessProbe:
+        initialDelaySeconds: 1
+        timeoutSeconds: 1
+        periodSeconds: 10
+        successThreshold: 1
+        failureThreshold: 3

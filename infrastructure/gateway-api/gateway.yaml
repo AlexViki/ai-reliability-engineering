@@ -14,15 +14,6 @@ spec:
     allowedRoutes:
       namespaces:
         from: All
-  - name: grpc
-    port: 50051
-    protocol: HTTP
-    allowedRoutes:
-      namespaces:
-        from: All
-  addresses:
-  - type: Hostname
-    value: agentgateway.local
 ---
 # HTTPRoute for routing model requests to AgentGateway
 apiVersion: gateway.networking.k8s.io/v1beta1
@@ -35,9 +26,6 @@ spec:
   - name: agentgateway-gateway
     namespace: agentgateway-system
     sectionName: http
-  hostnames:
-  - "agentgateway.local"
-  - "api.agentgateway.local"
   rules:
   - matches:
     - path:
@@ -47,7 +35,7 @@ spec:
         type: PathPrefix
         value: /v1/models
     backendRefs:
-    - name: agentgateway
+    - name: agentgateway-system-agentgateway
       namespace: agentgateway-system
       port: 9978
       weight: 100
@@ -59,7 +47,7 @@ spec:
         type: PathPrefix
         value: /v1/agents
     backendRefs:
-    - name: agentgateway
+    - name: agentgateway-system-agentgateway
       namespace: agentgateway-system
       port: 9978
       weight: 100
@@ -68,7 +56,7 @@ spec:
         type: PathPrefix
         value: /api/
     backendRefs:
-    - name: agentgateway
+    - name: agentgateway-system-agentgateway
       namespace: agentgateway-system
       port: 9978
       weight: 100
@@ -84,15 +72,27 @@ spec:
   - name: agentgateway-gateway
     namespace: agentgateway-system
     sectionName: http
-  hostnames:
-  - "ui.agentgateway.local"
-  - "dashboard.agentgateway.local"
   rules:
   - backendRefs:
-    - name: agentgateway
+    - name: agentgateway-system-agentgateway
       namespace: agentgateway-system
       port: 15000
       weight: 100
+---
+# ReferenceGrant to allow HTTPRoute in agentgateway-system to reference Kagent services in kagent-system
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: agentgateway-to-kagent
+  namespace: kagent-system
+spec:
+  from:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    namespace: agentgateway-system
+  to:
+  - group: ""
+    kind: Service
 ---
 # HTTPRoute for Kagent UI access
 apiVersion: gateway.networking.k8s.io/v1beta1
@@ -105,9 +105,6 @@ spec:
   - name: agentgateway-gateway
     namespace: agentgateway-system
     sectionName: http
-  hostnames:
-  - "kagent.local"
-  - "agents.local"
   rules:
   - backendRefs:
     - name: kagent-system-kagent-ui
