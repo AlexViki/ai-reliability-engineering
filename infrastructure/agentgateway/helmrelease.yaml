@@ -23,5 +23,4 @@ spec:
     crds: CreateReplace
     disableWait: true
   values:
-    # Set to 0 to disable redundant controller pod (main control plane works via Gateway)
-    replicaCount: 0
+    replicaCount: 0  # Set to 0 to disable redundant controller pod (main control plane works via Gateway)
