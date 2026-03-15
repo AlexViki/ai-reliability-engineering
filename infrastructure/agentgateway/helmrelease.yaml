@@ -13,11 +13,11 @@ spec:
         kind: HelmRepository
         name: agentgateway
         namespace: flux-system
+  targetNamespace: agentgateway-system
   install:
     crds: Create
   upgrade:
     crds: CreateReplace
-  namespace: agentgateway-system
   # Ensure CRDs are installed before agentgateway
   dependsOn:
     - name: agentgateway-crds
