@@ -1,0 +1,29 @@
+# Secrets and sensitive data
+~/access/
+access/secrets.yaml
+.env
+.env.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build and dependency files
+node_modules/
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+*.log
+*temp*
+
+# Helm
+charts/*/charts/

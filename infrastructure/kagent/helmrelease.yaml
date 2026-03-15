@@ -67,7 +67,7 @@ spec:
           value: info
       envFrom:
         - secretRef:
-            name: kagent-llm-secrets
+            name: gemini-api-keys
     
     # UI Configuration
     ui:
