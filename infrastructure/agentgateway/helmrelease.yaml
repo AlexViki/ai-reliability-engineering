@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: agentgateway
+  namespace: flux-system
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: agentgateway
+      version: v2.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: agentgateway
+        namespace: flux-system
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  namespace: agentgateway-system
+  # Ensure CRDs are installed before agentgateway
+  dependsOn:
+    - name: agentgateway-crds
+      namespace: flux-system
+  values: {}
+  # Optional: Override values by uncommenting and modifying below
+  # values:
+  #   resources:
+  #     limits:
+  #       memory: 512Mi
+  #       cpu: 500m
+  #     requests:
+  #       memory: 256Mi
+  #       cpu: 250m

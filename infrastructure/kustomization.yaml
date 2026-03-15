@@ -3,5 +3,5 @@ kind: Kustomization
 
 resources:
 - gateway-api
-# - agentgateway
+- agentgateway
 - namespace.yaml
