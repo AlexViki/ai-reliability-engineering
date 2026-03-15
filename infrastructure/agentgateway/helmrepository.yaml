@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: agentgateway
-  namespace: flux-system
-spec:
-  interval: 10m
-  url: https://charts.agentgateway.dev
