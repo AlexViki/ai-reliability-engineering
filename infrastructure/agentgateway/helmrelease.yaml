@@ -16,12 +16,11 @@ spec:
   targetNamespace: agentgateway-system
   install:
     crds: Create
+    # Wait for CRDs to be created
+    remediation:
+      retries: 5
   upgrade:
     crds: CreateReplace
-  # Ensure CRDs are installed before agentgateway
-  dependsOn:
-    - name: agentgateway-crds
-      namespace: flux-system
   values: {}
   # Optional: Override values by uncommenting and modifying below
   # values:
