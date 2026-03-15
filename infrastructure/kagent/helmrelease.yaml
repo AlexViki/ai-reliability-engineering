@@ -1,85 +1,91 @@
-apiVersion: v1
-kind: ServiceAccount
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
-  name: kagent
-  namespace: kagent-system
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kagent
-  namespace: kagent-system
+  name: kagent-crds
+  namespace: flux-system
 spec:
-  selector:
-    app: kagent
-  ports:
-    - name: grpc
-      port: 9979
-      targetPort: 9979
-    - name: health
-      port: 9094
-      targetPort: 9094
-    - name: metrics
-      port: 9095
-      targetPort: 9095
-  type: ClusterIP
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kagent
-  namespace: kagent-system
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kagent
-  template:
-    metadata:
-      labels:
-        app: kagent
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "9095"
+  interval: 10m
+  chart:
     spec:
-      serviceAccountName: kagent
-      containers:
-      - name: kagent
-        image: ghcr.io/kgateway-dev/kagent:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - name: grpc
-          containerPort: 9979
-        - name: health
-          containerPort: 9094
-        - name: metrics
-          containerPort: 9095
-        env:
+      chart: kagent-crds
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: kagent
+        namespace: flux-system
+  targetNamespace: kagent-system
+  install:
+    crds: Create
+    disableWait: true
+    remediation:
+      retries: 5
+  upgrade:
+    crds: CreateReplace
+    disableWait: true
+  values: {}
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent
+  namespace: flux-system
+spec:
+  interval: 10m
+  dependsOn:
+    - name: kagent-crds
+  chart:
+    spec:
+      chart: kagent
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: kagent
+        namespace: flux-system
+  targetNamespace: kagent-system
+  install:
+    crds: Create
+    disableWait: true
+    remediation:
+      retries: 5
+  upgrade:
+    crds: CreateReplace
+    disableWait: true
+  values:
+    # LLM Provider Configuration - Gemini
+    providers:
+      default: gemini
+      gemini:
+        apiKey: GEMINI_API_KEY  # Will be replaced from Secret via envFrom
+    
+    # Controller configuration
+    controller:
+      env:
+        - name: KAGENT_CONTROLLER_NAME
+          value: kagent-controller
         - name: LOG_LEVEL
-          value: "info"
-        - name: GEMINI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: llm-api-keys
-              key: google-api-key
-        resources:
-          requests:
-            cpu: 250m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 9094
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 9094
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          value: info
+      envFrom:
+        - secretRef:
+            name: kagent-llm-secrets
+    
+    # UI Configuration
+    ui:
+      enabled: true
+      service:
+        type: ClusterIP
+        port: 8080
+    
+    # Resource configuration
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    
+    # Pod annotations for Prometheus
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8080"
