@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
 - gateway-api
 - agentgateway
+- kagent
 - namespace.yaml

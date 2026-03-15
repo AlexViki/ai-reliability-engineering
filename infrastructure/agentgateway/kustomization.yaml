@@ -6,3 +6,10 @@ resources:
   - helmrepository.yaml
   - helmrelease-crds.yaml
   - helmrelease.yaml
+  - configmap.yaml
+  # - secrets.yaml
+  # Here is exaple of how to add secrets to kustomization, 
+  # but we will manage secrets separately for better security practices.
+  # correct secret will be aplly via kubectl from local PC by securety reasons.
+  # - first need to create NS, after that can creetate secret in this NS and apply it to cluster.
+  # - kubectl apply -f ~/access/secrets.yaml
