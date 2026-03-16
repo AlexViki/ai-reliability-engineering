@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kagent
-  namespace: flux-system
+  namespace: agents
 spec:
   interval: 10m
   type: oci
