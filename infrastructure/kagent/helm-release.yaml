@@ -11,7 +11,7 @@ spec:
       version: ">=0.1.0" # Вкажіть бажану версію або діапазон
       sourceRef:
         kind: HelmRepository
-        name: kagent-repo
+        name: kagent
         namespace: agents
   values:
     providers:
