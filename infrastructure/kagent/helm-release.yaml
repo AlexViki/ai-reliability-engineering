@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent
+  namespace: agents
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kagent
+      version: ">=0.1.0" # Вкажіть бажану версію або діапазон
+      sourceRef:
+        kind: HelmRepository
+        name: kagent-repo
+        namespace: flux-system
+  values:
+    providers:
+      default: gemini
+  valuesFrom:
+    - kind: Secret
+      name: gemini-api-keys
+      # Примітка: переконайтеся, що ключ у секреті називається так,
+      # як очікує чарт (наприклад, apiKey), або використайте targetPath
+      # для мапінгу, якщо назва ключа в секреті відрізняється.

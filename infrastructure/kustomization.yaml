@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 # - gateway-api
 # - agentgateway
-# - kagent
 - namespace.yaml
 - agentgateway-pod.yaml
+- kagent/helm-release.yaml
+- kagent/helm-repository.yaml
