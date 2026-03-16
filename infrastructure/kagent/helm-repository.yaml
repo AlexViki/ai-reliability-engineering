@@ -2,16 +2,6 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kagent-crds
-  namespace: agents
-spec:
-  interval: 10m
-  type: oci
-  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
   name: kagent
   namespace: agents
 spec:
