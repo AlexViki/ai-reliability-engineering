@@ -14,8 +14,53 @@ spec:
         name: kagent
         namespace: agents
   values:
+    agents:
+      k8s-agent:
+        enabled: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      observability-agent:
+        enabled: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      kgateway-agent:
+        enabled: false
+      istio-agent:
+        enabled: false
+      promql-agent:
+        enabled: false
+      argo-rollouts-agent:
+        enabled: false
+      helm-agent:
+        enabled: false
+      cilium-policy-agent:
+        enabled: false
+      cilium-manager-agent:
+        enabled: false
+      cilium-debug-agent:
+        enabled: false
     providers:
-      default: gemini
+      default: Gemini
+      gemini:
+        provider: Gemini
+        model: "gemini-2.0-flash-lite"
+        apiKeySecretRef: gemini-api-keys
+        apiKeySecretKey: GOOGLE_API_KEY
+      openAI:
+        provider: OpenAI
+        model: "gpt-4.1-mini"
+        apiKeySecretRef: openai-api-keys
+        apiKeySecretKey: OPENAI_API_KEY
   valuesFrom:
     - kind: Secret
       name: gemini-api-keys
