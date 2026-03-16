@@ -9,8 +9,8 @@ spec:
     spec:
       chart: kagent-crds
       sourceRef:
-        # kind: OCIRepository
-        kind: HelmRepository
+        kind: OCIRepository
+        # kind: HelmRepository
         name: kagent-crds
         namespace: kagent
   install:
