@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kagent-repo
-        namespace: flux-system
+        namespace: agents
   values:
     providers:
       default: gemini
