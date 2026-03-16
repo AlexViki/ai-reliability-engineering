@@ -3,6 +3,6 @@ kind: Kustomization
 
 resources:
 - gateway-api
-- agentgateway
-- kagent
+# - agentgateway
+# - kagent
 - namespace.yaml
