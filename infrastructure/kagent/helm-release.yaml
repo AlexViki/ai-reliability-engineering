@@ -64,6 +64,9 @@ spec:
   valuesFrom:
     - kind: Secret
       name: gemini-api-keys
-      # Примітка: переконайтеся, що ключ у секреті називається так,
-      # як очікує чарт (наприклад, apiKey), або використайте targetPath
-      # для мапінгу, якщо назва ключа в секреті відрізняється.
+      targetPath: providers.gemini.apiKey
+      valuesKey: GEMINI_API_KEY
+    - kind: Secret
+      name: openai-api-keys
+      targetPath: providers.openAI.apiKey
+      valuesKey: OPENAI_API_KEY
