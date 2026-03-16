@@ -1,15 +1,3 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: kagent
-  namespace: agents
-spec:
-  interval: 10m
-  type: oci
-  url: oci://ghcr.io/kagent-dev/kagent/helm
-
----
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
