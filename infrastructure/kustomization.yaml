@@ -6,3 +6,4 @@ resources:
 # - agentgateway
 # - kagent
 - namespace.yaml
+- agentgateway-pod.yaml
