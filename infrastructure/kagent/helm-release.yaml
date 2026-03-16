@@ -50,9 +50,9 @@ spec:
       cilium-debug-agent:
         enabled: false
     providers:
-      default: Gemini
+      default: gemini
       gemini:
-        provider: Gemini
+        provider: gemini
         model: "gemini-2.0-flash-lite"
         apiKeySecretRef: gemini-api-keys
         apiKeySecretKey: GEMINI_API_KEY
