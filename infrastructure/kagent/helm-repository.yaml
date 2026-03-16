@@ -9,14 +9,14 @@ spec:
   type: oci
   url: oci://ghcr.io/kagent-dev/kagent/helm
 
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
-metadata:
-  name: kagent-crds
-  namespace: flux-system
-spec:
-  interval: 5m
-  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
-  ref:
-    tag: "0.7.23"
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1
+# kind: OCIRepository
+# metadata:
+#   name: kagent-crds
+#   namespace: flux-system
+# spec:
+#   interval: 5m
+#   url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
+#   ref:
+#     tag: "0.7.23"
