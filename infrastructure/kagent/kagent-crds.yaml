@@ -1,0 +1,90 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent-crds
+  namespace: kagent
+spec:
+  interval: 1h
+  releaseName: kagent-crds
+  chartRef:
+    kind: OCIRepository
+    name: kagent-crds
+    namespace: flux-system
+  install:
+    createNamespace: true
+    crds: CreateReplace
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent
+  namespace: agents
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kagent
+      version: ">=0.1.0" # Вкажіть бажану версію або діапазон
+      sourceRef:
+        kind: HelmRepository
+        name: kagent
+        namespace: agents
+  values:
+    agents:
+      k8s-agent:
+        enabled: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      observability-agent:
+        enabled: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      kgateway-agent:
+        enabled: false
+      istio-agent:
+        enabled: false
+      promql-agent:
+        enabled: false
+      argo-rollouts-agent:
+        enabled: false
+      helm-agent:
+        enabled: false
+      cilium-policy-agent:
+        enabled: false
+      cilium-manager-agent:
+        enabled: false
+      cilium-debug-agent:
+        enabled: false
+    providers:
+      default: gemini
+      gemini:
+        provider: gemini
+        model: "gemini-2.0-flash-lite"
+        apiKeySecretRef: gemini-api-keys
+        apiKeySecretKey: GEMINI_API_KEY
+      openAI:
+        provider: OpenAI
+        model: "gpt-4.1-mini"
+        apiKeySecretRef: openai-api-keys
+        apiKeySecretKey: OPENAI_API_KEY
+  valuesFrom:
+    - kind: Secret
+      name: gemini-api-keys
+      targetPath: providers.gemini.apiKey
+      valuesKey: GEMINI_API_KEY
+    - kind: Secret
+      name: openai-api-keys
+      targetPath: providers.openAI.apiKey
+      valuesKey: OPENAI_API_KEY

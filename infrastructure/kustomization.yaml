@@ -6,5 +6,6 @@ resources:
 # - agentgateway
 - namespace.yaml
 - agentgateway-pod.yaml
-# - kagent/helm-repository.yaml
+- kagent/repository.yaml
+- kagent/kagent-crds.yaml
 # - kagent/helm-release.yaml

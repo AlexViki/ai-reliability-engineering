@@ -1,24 +1,3 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: kagent-crds
-  namespace: kagent
-spec:
-  interval: 10m
-  chart:
-    spec:
-      chart: kagent-crds
-      sourceRef:
-        kind: OCIRepository
-        # kind: HelmRepository
-        name: kagent-crds
-        namespace: kagent
-  install:
-    createNamespace: false
-    crds: Create
-  upgrade:
-    crds: CreateReplace
-
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
