@@ -1,0 +1,24 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kagent
+  namespace: flux-system
+spec:
+  interval: 10m
+  type: oci
+  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent
+  ref:
+    tag: "0.7.23"
+
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kagent-crds
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
+  ref:
+    semver: ">=0.0.1"
