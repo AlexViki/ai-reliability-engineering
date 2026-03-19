@@ -5,7 +5,7 @@ metadata:
   name: kagent
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1d
   type: oci
   url: oci://ghcr.io/kagent-dev/kagent/helm/kagent
   ref:
@@ -18,7 +18,7 @@ metadata:
   name: kagent-crds
   namespace: flux-system
 spec:
-  interval: 1h
+  interval: 1d
   url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
   ref:
     semver: ">=0.0.1"
