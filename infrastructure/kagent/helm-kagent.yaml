@@ -15,9 +15,6 @@ spec:
   # version: ">=0.1.0"
     namespace: flux-system
   values:
-    labels:
-      environment: dev
-      team: ai
     tag: "0.7.23"
     controller:
       image:
