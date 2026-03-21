@@ -63,24 +63,24 @@ spec:
       default: openAI
       gemini:
         provider: openAI
-        model: "gemini-1.5-flash"
-        apiKey: GOOGLE_API_KEY
-        # apiKeySecretRef: gemini-api-keys
-        # apiKeySecretKey: GOOGLE_API_KEY
+        model: "gpt-4.1-mini"
+        apiKeySecretRef: gemini-api-keys
+        apiKeySecretKey: GOOGLE_API_KEY
       openAI:
         provider: OpenAI
         model: "gpt-4.1-mini"
-        apiKey: OPENAI_API_KEY
-        # apiKeySecretRef: openai-api-keys
-        # apiKeySecretKey: OPENAI_API_KEY
-  valuesFrom:
-    - kind: Secret
-      name: gemini-api-keys
-      targetPath: providers.gemini.apiKey
-      valuesKey: GOOGLE_API_KEY
-    - kind: Secret
-      name: openai-api-keys
-      targetPath: providers.openAI.apiKey
-      valuesKey: OPENAI_API_KEY
+        apiKeySecretRef: openai-api-keys
+        apiKeySecretKey: OPENAI_API_KEY
+  # valuesFrom:
+  #   - kind: Secret
+  #     name: gemini-api-keys
+  #     namespace: kagent
+  #     targetPath: providers.gemini.apiKey
+  #     valuesKey: GOOGLE_API_KEY
+  #   - kind: Secret
+  #     name: openai-api-keys
+  #     namespace: kagent
+  #     targetPath: providers.openAI.apiKey
+  #     valuesKey: OPENAI_API_KEY
 
 # kubectl apply -f ~/access/secrets.yaml 
