@@ -8,11 +8,11 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: kagent
-      version: ">=0.1.0"
-      sourceRef:
+      chartRef:
         kind: OCIRepository
         name: kagent
+      # chart: kagent
+      # version: ">=0.1.0"
         namespace: flux-system
   values:
     labels:
