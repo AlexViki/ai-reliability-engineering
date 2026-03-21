@@ -8,5 +8,5 @@ resources:
 - agentgateway-pod.yaml
 - kagent/repository.yaml
 - kagent/helm-kagent-crds.yaml
-- kagent/helm-kagent.yaml
+# - kagent/helm-kagent.yaml
 # - kagent/helm-release.yaml
