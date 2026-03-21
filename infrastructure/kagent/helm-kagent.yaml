@@ -10,8 +10,8 @@ spec:
     spec:
       chart: kagent
       version: ">=0.1.0"
-      sourceRef:
-        kind: HelmRepository
+      chartRef:
+        kind: OCIRepository
         name: kagent
         namespace: flux-system
   values:
