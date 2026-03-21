@@ -10,7 +10,7 @@ spec:
     spec:
       chart: kagent
       version: ">=0.1.0"
-      chartRef:
+      sourceRef:
         kind: OCIRepository
         name: kagent
         namespace: flux-system
