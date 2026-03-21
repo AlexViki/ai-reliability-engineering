@@ -6,14 +6,14 @@ metadata:
   namespace: kagent
 spec:
   interval: 1h
+  dependsOn:
+    - name: kagent-crds
+      namespace: kagent
   chartRef:
     kind: OCIRepository
     name: kagent
   # version: ">=0.1.0"
     namespace: flux-system
-  dependsOn:
-    - name: kagent-crds
-      namespace: kagent
   values:
     labels:
       environment: dev
