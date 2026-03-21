@@ -42,14 +42,7 @@ spec:
             cpu: 500m
             memory: 512Mi
       observability-agent:
-        enabled: true
-        resources:
-          requests:
-            cpu: 100m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
+        enabled: false
       kgateway-agent:
         enabled: false
       istio-agent:
