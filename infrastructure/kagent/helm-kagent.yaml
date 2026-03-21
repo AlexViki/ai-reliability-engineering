@@ -60,17 +60,17 @@ spec:
       cilium-debug-agent:
         enabled: false
     providers:
-      default: gemini
+      default: openAI
       gemini:
-        provider: Gemini
+        provider: openAI
         model: "gemini-1.5-flash"
         apiKeySecretRef: gemini-api-keys
         apiKeySecretKey: GOOGLE_API_KEY
-      # openAI:
-      #   provider: OpenAI
-      #   model: "gpt-4.1-mini"
-      #   apiKeySecretRef: openai-api-keys
-      #   apiKeySecretKey: OPENAI_API_KEY
+      openAI:
+        provider: OpenAI
+        model: "gpt-4.1-mini"
+        apiKeySecretRef: openai-api-keys
+        apiKeySecretKey: OPENAI_API_KEY
   valuesFrom:
     - kind: Secret
       name: gemini-api-keys
