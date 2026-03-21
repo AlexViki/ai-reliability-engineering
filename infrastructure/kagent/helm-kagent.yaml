@@ -14,6 +14,15 @@ spec:
     name: kagent
   # version: ">=0.1.0"
     namespace: flux-system
+  postRenderers:
+  - kustomize:
+      patches:
+      - patch: |
+          - op: add
+            path: /metadata/labels/app.kubernetes.io~1version
+            value: "0.7.23"
+        target:
+          labelSelector: app.kubernetes.io/name=kagent
   values:
     tag: "0.7.23"
     controller:
