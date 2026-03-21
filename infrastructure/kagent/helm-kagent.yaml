@@ -3,18 +3,21 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kagent
-  namespace: agents
+  namespace: kagent
 spec:
-  interval: 5m
+  interval: 1h
   chart:
     spec:
       chart: kagent
-      version: ">=0.1.0" # Вкажіть бажану версію або діапазон
+      version: ">=0.1.0"
       sourceRef:
         kind: HelmRepository
         name: kagent
-        namespace: agents
+        namespace: flux-system
   values:
+    labels:
+      environment: dev
+      team: ai-reliability-engineering
     agents:
       k8s-agent:
         enabled: true
@@ -53,21 +56,23 @@ spec:
     providers:
       default: gemini
       gemini:
-        provider: gemini
+        provider: Gemini
         model: "gemini-2.0-flash-lite"
         apiKeySecretRef: gemini-api-keys
-        apiKeySecretKey: GEMINI_API_KEY
-      openAI:
-        provider: OpenAI
-        model: "gpt-4.1-mini"
-        apiKeySecretRef: openai-api-keys
-        apiKeySecretKey: OPENAI_API_KEY
+        apiKeySecretKey: GOOGLE_API_KEY
+      # openAI:
+      #   provider: OpenAI
+      #   model: "gpt-4.1-mini"
+      #   apiKeySecretRef: openai-api-keys
+      #   apiKeySecretKey: OPENAI_API_KEY
   valuesFrom:
     - kind: Secret
       name: gemini-api-keys
       targetPath: providers.gemini.apiKey
-      valuesKey: GEMINI_API_KEY
+      valuesKey: GOOGLE_API_KEY
     - kind: Secret
       name: openai-api-keys
       targetPath: providers.openAI.apiKey
       valuesKey: OPENAI_API_KEY
+
+# kubectl apply -f ~/access/secrets.yaml 
