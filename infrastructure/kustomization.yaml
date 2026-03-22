@@ -2,10 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+# - agentgateway-pod.yaml
+- agentgateway/namespace.yaml
+- agentgateway/repository.yaml
 # - gateway-api
 # - agentgateway
 - namespace.yaml
-# - agentgateway-pod.yaml
 - kagent/repository.yaml
 - kagent/helm-kagent-crds.yaml
 - kagent/helm-kagent.yaml
