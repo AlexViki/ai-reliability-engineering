@@ -5,6 +5,7 @@ resources:
 # - agentgateway-pod.yaml
 - agentgateway/namespace.yaml
 - agentgateway/repository.yaml
+- agentgateway/helm-release.yaml
 # - gateway-api
 # - agentgateway
 - namespace.yaml
