@@ -13,17 +13,17 @@ spec:
     namespace: flux-system
   values:
     env:
-    LICENSE_KEY: "contact laszlo at gimlet.io"
-    AUTH: noauth
-    AUTH_DEBUG: "true" #logs impersonation headers
-    IMPERSONATE_SA_RULES: "noauth=flux-system:capacitor-next-preset-clusteradmin"
-    SESSION_HASH_KEY:"base64:$(openssl rand -base64 32)"
-    SESSION_BLOCK_KEY:"base64:$(openssl rand -base64 32)"
-    registry.yaml: |
-      clusters:
-      - id: in-cluster
-        name: In-cluster
-        apiServerURL: https://kubernetes.default.svc
-        certificateAuthorityFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        serviceAccount:
-          tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+      LICENSE_KEY: "contact laszlo at gimlet.io"
+      AUTH: noauth
+      AUTH_DEBUG: "true" #logs impersonation headers
+      IMPERSONATE_SA_RULES: "noauth=flux-system:capacitor-next-preset-clusteradmin"
+      SESSION_HASH_KEY:"base64:$(openssl rand -base64 32)"
+      SESSION_BLOCK_KEY:"base64:$(openssl rand -base64 32)"
+      registry.yaml: |
+        clusters:
+        - id: in-cluster
+          name: In-cluster
+          apiServerURL: https://kubernetes.default.svc
+          certificateAuthorityFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          serviceAccount:
+            tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
