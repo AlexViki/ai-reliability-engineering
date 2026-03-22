@@ -13,6 +13,7 @@ resources:
 - kagent/helm-kagent.yaml
 ##############################################
 - gateway-api/repository.yaml
+- gateway-api/helm-gateway-api-crds.yaml
 ##############################################
 - agentgateway/namespace.yaml
 - agentgateway/repository.yaml
