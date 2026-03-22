@@ -59,6 +59,7 @@ spec:
         enabled: false
       cilium-debug-agent:
         enabled: false
+    # https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite
     providers:
       default: gemini
       gemini:
