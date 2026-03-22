@@ -21,4 +21,5 @@ resources:
 - agentgateway/helm-agentgateway.yaml
 ##############################################
 - capacitor/repository.yaml
+- capacitor/helm-capacitor.yaml
 ##############################################
