@@ -5,7 +5,7 @@ resources:
 # - gateway-api
 # - agentgateway
 - namespace.yaml
-- agentgateway-pod.yaml
+# - agentgateway-pod.yaml
 - kagent/repository.yaml
 - kagent/helm-kagent-crds.yaml
 - kagent/helm-kagent.yaml
