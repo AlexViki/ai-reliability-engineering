@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: gateway-api-crds
+  namespace: flux-system
+spec:
+  interval: 1h
+  url: oci://ghcr.io/den-vasyliev/gateway-api-crds
+  ref:
+    tag: "1.4.0"
