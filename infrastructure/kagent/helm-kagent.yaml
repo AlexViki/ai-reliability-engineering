@@ -63,7 +63,7 @@ spec:
       default: gemini
       gemini:
         provider: Gemini
-        model: "gemini-1.5-flash"
+        model: "models/gemini-1.5-flash"
         apiKeySecretRef: gemini-api-keys
         apiKeySecretKey: GOOGLE_API_KEY
       # openAI:
