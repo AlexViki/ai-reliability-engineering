@@ -15,5 +15,5 @@ resources:
 - agentgateway/namespace.yaml
 - agentgateway/repository.yaml
 - agentgateway/helm-agentgateway-crds.yaml
-- agentgateway/helm-agentgateway.yaml
+# - agentgateway/helm-agentgateway.yaml
 ##############################################
