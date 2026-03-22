@@ -3,13 +3,13 @@ kind: Kustomization
 
 resources:
 # - agentgateway-pod.yaml
-- agentgateway/namespace.yaml
-- agentgateway/repository.yaml
-- agentgateway/helm-agentgateway-crds.yaml
 # - gateway-api
 # - agentgateway
 - namespace.yaml
+- agentgateway/namespace.yaml
+- agentgateway/repository.yaml
+- agentgateway/helm-agentgateway-crds.yaml
+- kagent/namespace.yaml
 - kagent/repository.yaml
 - kagent/helm-kagent-crds.yaml
 - kagent/helm-kagent.yaml
-# - kagent/helm-release.yaml
