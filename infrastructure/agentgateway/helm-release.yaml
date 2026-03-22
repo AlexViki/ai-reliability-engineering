@@ -1,0 +1,16 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: agentgateway-crds
+  namespace: agentgateway-system
+spec:
+  interval: 1h
+  releaseName: agentgateway-crds
+  chartRef:
+    kind: OCIRepository
+    name: agentgateway-crds
+    namespace: flux-system
+  install:
+    createNamespace: true
+    crds: CreateReplace
