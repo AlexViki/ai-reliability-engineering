@@ -18,7 +18,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: kagent.dev/v1alpha1
-kind: McpServer
+kind: MCPServer
 metadata:
   name: k8s-inspector
   namespace: kagent
@@ -45,6 +45,6 @@ spec:
   modelConfig:
     name: default-model-config
   tools:
-  - type: McpServer
+  - type: MCPServer
     mcpServer:
       name: k8s-inspector
