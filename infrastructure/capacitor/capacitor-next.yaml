@@ -1,0 +1,31 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: capacitor-next-helm
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/gimlet-io/charts/capacitor-next
+  ref:
+    semver: ">= 0.12.0"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capacitor-next
+  namespace: flux-system
+spec:
+  interval: 15m
+  timeout: 1m
+  chartRef:
+    kind: OCIRepository
+    name: capacitor-next-helm
+    namespace: flux-system
+  values:
+    env:
+      AUTH: noauth
+      AUTH_DEBUG: "true"
+      IMPERSONATE_SA_RULES: "noauth=flux-system:capacitor-next-preset-clusteradmin"
+    existingSecret:
+      name: capacitor-next
