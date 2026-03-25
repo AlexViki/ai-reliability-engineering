@@ -44,7 +44,7 @@ spec:
       observability-agent:
         enabled: false
       kgateway-agent:
-        enabled: false
+        enabled: true
       istio-agent:
         enabled: false
       promql-agent:
@@ -65,6 +65,7 @@ spec:
       gemini:
         provider: Gemini
         model: gemini-2.5-flash
+        endpoint: http://agentgateway.agentgateway-system.svc.cluster.local:9978
         apiKeySecretRef: gemini-api-keys
         apiKeySecretKey: GOOGLE_API_KEY
       # openAI:
