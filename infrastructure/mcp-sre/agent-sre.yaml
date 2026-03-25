@@ -43,14 +43,15 @@ spec:
     systemMessage: "You are an expert SRE assistant specializing in Kubernetes and FluxCD. Use your tools to inspect the cluster and provide diagnostics."
     modelConfig: default-model-config
     tools:
-    - type: McpServer
-      mcpServer:
+    - mcpServer:
         apiGroup: kagent.dev
         kind: MCPServer
         name: k8s-inspector
-      toolNames:
-      - list_pods
-      - get_pod_logs
-      - list_deployments
-      - list_services
-      - get_events
+        namespace: kagent
+        toolNames:
+        - list_pods
+        - get_pod_logs
+        - list_deployments
+        - list_services
+        - get_events
+      type: McpServer
