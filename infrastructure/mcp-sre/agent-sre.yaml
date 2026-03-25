@@ -40,6 +40,7 @@ spec:
   description: >
     Specialized AI assistant for Kubernetes reliability and troubleshooting.
   declarative:
+    systemMessage: "You are an expert SRE assistant specializing in Kubernetes and FluxCD. Use your tools to inspect the cluster and provide diagnostics."
     modelConfig: default-model-config
     tools:
     - type: McpServer
