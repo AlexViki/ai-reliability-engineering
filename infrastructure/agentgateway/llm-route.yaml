@@ -1,4 +1,4 @@
-apiVersion: agentgateway.dev/v1beta1
+apiVersion: agentgateway.dev/v1alpha1
 kind: AgentgatewayBackend
 metadata:
   name: google-gemini
