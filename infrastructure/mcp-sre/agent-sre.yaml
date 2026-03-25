@@ -41,7 +41,7 @@ spec:
     Specialized AI assistant for Kubernetes reliability and troubleshooting.
   type: Declarative
   tools:
-  - type: MCPServer
+  - type: McpServer
     mcpServer:
       apiGroup: kagent.dev
       kind: MCPServer
