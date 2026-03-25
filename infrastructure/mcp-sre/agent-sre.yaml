@@ -24,6 +24,8 @@ metadata:
   namespace: kagent
 spec:
   transportType: http
+  httpTransport:
+    targetPort: 3000
   deployment:
     image: node:20-slim
     cmd: "npx -y @modelcontextprotocol/server-kubernetes"
