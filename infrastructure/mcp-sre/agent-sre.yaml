@@ -23,9 +23,7 @@ metadata:
   name: k8s-inspector
   namespace: kagent
 spec:
-  transportType: http
-  httpTransport:
-    targetPort: 3000
+  transportType: stdio
   deployment:
     image: node:20-slim
     cmd: "npx -y @modelcontextprotocol/server-kubernetes"
