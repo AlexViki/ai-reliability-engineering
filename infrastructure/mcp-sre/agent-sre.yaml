@@ -1,15 +1,38 @@
-apiVersion: kagent.dev/v1beta1
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-inspector
+  namespace: kagent
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: k8s-inspector-binding
+subjects:
+- kind: ServiceAccount
+  name: k8s-inspector
+  namespace: kagent
+roleRef:
+  kind: ClusterRole
+  name: view
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: kagent.dev/v1alpha1
 kind: McpServer
 metadata:
   name: k8s-inspector
   namespace: kagent
 spec:
   name: k8s-inspector
-  description: Kubernetes Inspector MCP server providing access to cluster resources.
-  endpoint: http://k8s-inspector.kagent.svc.cluster.local:3000
-  type: McpServer
+  description: Kubernetes Inspector MCP server via built-in deployment.
+  transportType: http
+  deployment:
+    image: node:20-slim
+    cmd: ["npx", "-y", "@modelcontextprotocol/server-kubernetes"]
+    port: 3000
+    serviceAccountName: k8s-inspector
 ---
-apiVersion: kagent.dev/v1beta1
+apiVersion: kagent.dev/v1alpha2
 kind: Agent
 metadata:
   name: sre-assistant
@@ -17,10 +40,11 @@ metadata:
 spec:
   name: SRE Assistant
   description: >
-    Specialized AI assistant for Kubernetes reliability and troubleshooting. 
-    It has access to cluster-wide resources to diagnose issues, check logs, 
-    and verify the status of FluxCD deployments.
+    Specialized AI assistant for Kubernetes reliability and troubleshooting.
   type: Declarative
-  modelConfig: default-model-config
-  mcpservers:
-    - name: k8s-inspector
+  modelConfig:
+    name: default-model-config
+  tools:
+  - type: McpServer
+    mcpServer:
+      name: k8s-inspector

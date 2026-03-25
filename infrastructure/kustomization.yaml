@@ -23,6 +23,6 @@ resources:
 ##############################################
 - capacitor/repository.yaml
 - capacitor/helm-capacitor.yaml
-- mcp-sre/k8s-inspector.yaml
+
 - mcp-sre/agent-sre.yaml
 ##############################################
