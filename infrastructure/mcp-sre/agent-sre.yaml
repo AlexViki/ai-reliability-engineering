@@ -23,7 +23,6 @@ metadata:
   name: k8s-inspector
   namespace: kagent
 spec:
-  name: k8s-inspector
   description: Kubernetes Inspector MCP server via built-in deployment.
   transportType: http
   deployment:
@@ -38,7 +37,6 @@ metadata:
   name: sre-assistant
   namespace: kagent
 spec:
-  name: SRE Assistant
   description: >
     Specialized AI assistant for Kubernetes reliability and troubleshooting.
   type: Declarative
