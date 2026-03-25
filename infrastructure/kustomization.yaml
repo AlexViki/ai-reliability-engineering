@@ -21,7 +21,10 @@ resources:
 - agentgateway/helm-agentgateway.yaml
 - agentgateway/llm-route.yaml
 ##############################################
-- capacitor/capacitor.yaml
+# - capacitor/capacitor.yaml
 ##############################################
 - mcp-sre/agent-sre.yaml
 ##############################################
+- self-host/rbac.yaml
+- self-host/deployment.yaml
+- self-host/service.yaml
