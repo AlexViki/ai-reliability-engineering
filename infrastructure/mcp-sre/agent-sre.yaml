@@ -1,0 +1,26 @@
+apiVersion: kagent.dev/v1beta1
+kind: McpServer
+metadata:
+  name: k8s-inspector
+  namespace: kagent
+spec:
+  name: k8s-inspector
+  description: Kubernetes Inspector MCP server providing access to cluster resources.
+  endpoint: http://k8s-inspector.kagent.svc.cluster.local:3000
+  type: McpServer
+---
+apiVersion: kagent.dev/v1beta1
+kind: Agent
+metadata:
+  name: sre-assistant
+  namespace: kagent
+spec:
+  name: SRE Assistant
+  description: >
+    Specialized AI assistant for Kubernetes reliability and troubleshooting. 
+    It has access to cluster-wide resources to diagnose issues, check logs, 
+    and verify the status of FluxCD deployments.
+  type: Declarative
+  modelConfig: default-model-config
+  mcpservers:
+    - name: k8s-inspector
