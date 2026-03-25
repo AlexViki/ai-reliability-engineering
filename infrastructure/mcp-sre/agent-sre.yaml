@@ -45,13 +45,15 @@ spec:
     tools:
     - mcpServer:
         apiGroup: kagent.dev
-        kind: MCPServer
-        name: k8s-inspector
+        kind: RemoteMCPServer
+        name: kagent-tool-server
         namespace: kagent
         toolNames:
-        - list_pods
-        - get_pod_logs
-        - list_deployments
-        - list_services
-        - get_events
+        - k8s_get_resources
+        - k8s_get_pod_logs
+        - k8s_get_events
+        - k8s_describe_resource
+        - prometheus_query_tool
+        - prometheus_targets_tool
+        - shell
       type: McpServer
