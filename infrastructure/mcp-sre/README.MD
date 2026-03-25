@@ -31,7 +31,7 @@ In this lab, we successfully deployed a production-like agentic infrastructure u
 
 3.  **Flux UI (Capacitor)**:
     ```bash
-    kubectl port-forward svc/capacitor-next -n flux-system 9000:9000
+    kubectl port-forward svc/capacitor -n flux-system 9000:9000
     ```
     *   Open `http://localhost:9000` to see the GitOps reconciliation status.
 
