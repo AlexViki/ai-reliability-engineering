@@ -48,3 +48,9 @@ spec:
         apiGroup: kagent.dev
         kind: MCPServer
         name: k8s-inspector
+      toolNames:
+      - list_pods
+      - get_pod_logs
+      - list_deployments
+      - list_services
+      - get_events
