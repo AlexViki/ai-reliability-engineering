@@ -23,11 +23,10 @@ metadata:
   name: k8s-inspector
   namespace: kagent
 spec:
-  description: Kubernetes Inspector MCP server via built-in deployment.
   transportType: http
   deployment:
     image: node:20-slim
-    cmd: ["npx", "-y", "@modelcontextprotocol/server-kubernetes"]
+    cmd: "npx -y @modelcontextprotocol/server-kubernetes"
     port: 3000
     serviceAccountName: k8s-inspector
 ---
