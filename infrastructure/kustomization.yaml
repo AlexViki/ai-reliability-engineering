@@ -21,8 +21,8 @@ resources:
 - agentgateway/helm-agentgateway.yaml
 - agentgateway/llm-route.yaml
 ##############################################
-- capacitor/repository.yaml
-- capacitor/helm-capacitor.yaml
+- weave-gitops/repository.yaml
+- weave-gitops/helm-weave.yaml
 ##############################################
 - mcp-sre/agent-sre.yaml
 ##############################################
