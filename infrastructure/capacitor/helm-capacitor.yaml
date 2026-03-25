@@ -1,0 +1,16 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capacitor
+  namespace: flux-system
+spec:
+  interval: 15m
+  timeout: 1m
+  chartRef:
+    kind: OCIRepository
+    name: capacitor-helm
+    namespace: flux-system
+  values:
+    ingress:
+      enabled: false
