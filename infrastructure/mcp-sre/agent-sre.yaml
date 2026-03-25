@@ -40,8 +40,9 @@ spec:
   description: >
     Specialized AI assistant for Kubernetes reliability and troubleshooting.
   type: Declarative
-  modelConfig: default-model-config
   tools:
   - type: MCPServer
     mcpServer:
+      apiGroup: kagent.dev
+      kind: MCPServer
       name: k8s-inspector
