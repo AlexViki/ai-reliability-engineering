@@ -36,12 +36,14 @@ metadata:
   name: sre-assistant
   namespace: kagent
 spec:
+  type: Declarative
   description: >
     Specialized AI assistant for Kubernetes reliability and troubleshooting.
-  type: Declarative
-  tools:
-  - type: McpServer
-    mcpServer:
-      apiGroup: kagent.dev
-      kind: MCPServer
-      name: k8s-inspector
+  declarative:
+    modelConfig: default-model-config
+    tools:
+    - type: McpServer
+      mcpServer:
+        apiGroup: kagent.dev
+        kind: MCPServer
+        name: k8s-inspector
