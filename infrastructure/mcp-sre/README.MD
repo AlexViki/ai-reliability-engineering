@@ -29,12 +29,6 @@ In this lab, we successfully deployed a production-like agentic infrastructure u
     *   Ask: "Run a prometheus query to show CPU usage of the kagent namespace."
     *   The agent will use its `prometheus_query_tool` to provide real-time metrics.
 
-3.  **Flux UI (Capacitor)**:
-    ```bash
-    kubectl port-forward svc/capacitor -n flux-system 9000:9000
-    ```
-    *   Open `http://localhost:9000` to see the GitOps reconciliation status.
-
 ## Documentation
 - [Agent SRE Manifests](file:///home/alex/ai-reliability-engineering/infrastructure/mcp-sre/agent-sre.yaml)
 - [Infrastructure Kustomization](file:///home/alex/ai-reliability-engineering/infrastructure/kustomization.yaml)
