@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mcp-inspector-sa
+  namespace: kagent
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: mcp-inspector-role
+  namespace: kagent
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: mcp-inspector-rolebinding
+  namespace: kagent
+subjects:
+- kind: ServiceAccount
+  name: mcp-inspector-sa
+  namespace: kagent
+roleRef:
+  kind: Role
+  name: mcp-inspector-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcp-inspector-ui
+  namespace: kagent
+  labels:
+    app: mcp-inspector-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcp-inspector-ui
+  template:
+    metadata:
+      labels:
+        app: mcp-inspector-ui
+    spec:
+      serviceAccountName: mcp-inspector-sa
+      initContainers:
+      - name: get-kubectl
+        image: bitnami/kubectl:latest
+        command: ["/bin/sh", "-c", "cp /opt/bitnami/kubectl/bin/kubectl /shared/kubectl && chmod +x /shared/kubectl"]
+        user: root
+        volumeMounts:
+        - name: shared-bin
+          mountPath: /shared
+      containers:
+      - name: inspector
+        image: node:20-slim
+        command:
+        - /bin/bash
+        - -c
+        - |
+          export PATH=$PATH:/shared
+          export HOST=0.0.0.0
+          export PORT=5173
+          npx -y @modelcontextprotocol/inspector@0.21.1
+        ports:
+        - containerPort: 5173
+        volumeMounts:
+        - name: shared-bin
+          mountPath: /shared
+      volumes:
+      - name: shared-bin
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcp-inspector-ui
+  namespace: kagent
+spec:
+  selector:
+    app: mcp-inspector-ui
+  ports:
+    - protocol: TCP
+      port: 5173
+      targetPort: 5173
+  type: ClusterIP
