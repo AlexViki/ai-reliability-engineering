@@ -1,0 +1,9 @@
+{"version": 2, "width": 180, "height": 25, "timestamp": 1774604138, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.002696, "o", "\r\n"]
+[0.003514, "o", "Fri Mar 27 09:35:38 AM UTC 2026\r\n"]
+[3.004852, "o", "###############################################################################################################\r\n"]
+[3.005082, "o", "Port forwarding to kagent-ui...\r\n"]
+[6.006888, "o", "###############################################################################################################\r\nChecking if kagent-ui is reachable...\r\n"]
+[16.024362, "o", "HTTP/1.1 200 OK\r\r\n\u001b[1mServer\u001b[0m: nginx/1.29.5\r\r\n\u001b[1mDate\u001b[0m: Fri, 27 Mar 2026 09:35:54 GMT\r\r\n\u001b[1mContent-Type\u001b[0m: text/html; charset=utf-8\r\r\n\u001b[1mContent-Length\u001b[0m: 15549\r\r\n"]
+[16.024419, "o", "\u001b[1mConnection\u001b[0m: keep-alive\r\r\n\u001b[1mVary\u001b[0m: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\r\r\n\u001b[1mCache-Control\u001b[0m: s-maxage=31536000\r\r\n\u001b[1mETag\u001b[0m: \"10zdeytubx6bzx\"\r\r\n\u001b[1mx-nextjs-cache\u001b[0m: HIT\r\r\n\u001b[1mx-nextjs-prerender\u001b[0m: 1\r\r\n\u001b[1mx-nextjs-stale-time\u001b[0m: 300\r\r\n\u001b[1mX-Powered-By\u001b[0m: Next.js\r\r\n\r\r\n"]
+[19.036464, "o", "###############################################################################################################\r\n"]
