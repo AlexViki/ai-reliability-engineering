@@ -25,6 +25,8 @@ resources:
 ##############################################
 - mcp-sre/agent-sre.yaml
 ##############################################
+- mcp-custom/memory-mcp.yaml
+##############################################
 # - self-host/rbac.yaml
 # - self-host/deployment.yaml
 # - self-host/service.yaml

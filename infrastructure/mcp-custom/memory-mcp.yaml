@@ -1,0 +1,11 @@
+apiVersion: kagent.dev/v1alpha1
+kind: MCPServer
+metadata:
+  name: memory-mcp
+  namespace: kagent
+spec:
+  transportType: stdio
+  deployment:
+    image: node:20-slim
+    cmd: "npx -y @modelcontextprotocol/server-memory"
+    port: 3000
