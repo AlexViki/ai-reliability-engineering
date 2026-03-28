@@ -21,6 +21,7 @@ Run asciinema rec --help for all recording options.
 ```bash
 asciinema rec --overwrite -c "./asciinema/asciinema_lab_1.sh" ./asciinema/lab_1.cast
 asciinema rec --overwrite -c "./asciinema/asciinema_lab_2.sh" ./asciinema/lab_2.cast
+asciinema rec --overwrite -c "./asciinema/asciinema_lab_3.sh" ./asciinema/lab_3.cast
 ```
 
 ## Replay directly in a terminal
@@ -33,6 +34,7 @@ asciinema play demo.cast
 ```bash
 asciinema play ./asciinema/lab_1.cast
 asciinema play ./asciinema/lab_2.cast
+asciinema play ./asciinema/lab_3.cast
 ```
 
 To replay it with double speed use --speed / -s option:
