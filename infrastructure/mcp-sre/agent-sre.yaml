@@ -17,18 +17,18 @@ roleRef:
   name: view
   apiGroup: rbac.authorization.k8s.io
 ---
-# apiVersion: kagent.dev/v1alpha1
-# kind: MCPServer
-# metadata:
-#   name: k8s-inspector
-#   namespace: kagent
-# spec:
-#   transportType: stdio
-#   deployment:
-#     image: node:20-slim
-#     cmd: "npx -y @modelcontextprotocol/server-kubernetes"
-#     port: 3000
-#     serviceAccountName: k8s-inspector
+apiVersion: kagent.dev/v1alpha1
+kind: MCPServer
+metadata:
+  name: k8s-inspector
+  namespace: kagent
+spec:
+  transportType: stdio
+  deployment:
+    image: node:20-slim
+    cmd: "npx -y @modelcontextprotocol/server-kubernetes"
+    port: 3000
+    serviceAccountName: k8s-inspector
 ---
 apiVersion: kagent.dev/v1alpha2
 kind: Agent
@@ -45,8 +45,7 @@ spec:
     tools:
     - mcpServer:
         apiGroup: kagent.dev
-        # kind: RemoteMCPServer
-        name: kagent-tool-server
+        kind: MCPServer
         name: k8s-inspector
         namespace: kagent
         toolNames:
@@ -54,6 +53,13 @@ spec:
         - k8s_get_pod_logs
         - k8s_get_events
         - k8s_describe_resource
+      type: McpServer
+    - mcpServer:
+        apiGroup: kagent.dev
+        kind: RemoteMCPServer
+        name: kagent-tool-server
+        namespace: kagent
+        toolNames:
         - prometheus_query_tool
         - prometheus_targets_tool
         - shell
