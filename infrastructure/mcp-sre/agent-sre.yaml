@@ -46,7 +46,8 @@ spec:
     - mcpServer:
         apiGroup: kagent.dev
         kind: RemoteMCPServer
-        name: kagent-tool-server
+        # name: kagent-tool-server
+        name: k8s-inspector
         namespace: kagent
         toolNames:
         - k8s_get_resources
