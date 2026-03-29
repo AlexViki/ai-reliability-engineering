@@ -26,7 +26,10 @@ spec:
   transportType: stdio
   deployment:
     image: node:20-slim
-    cmd: "npx -y mcp-server-kubernetes"
+    cmd: npx
+    args:
+    - "-y"
+    - mcp-server-kubernetes
     port: 3000
     serviceAccountName: k8s-inspector
 ---
