@@ -52,10 +52,10 @@ spec:
         name: k8s-inspector
         namespace: kagent
         toolNames:
-        - k8s_get_resources
-        - k8s_get_pod_logs
-        - k8s_get_events
-        - k8s_describe_resource
+        - kubectl_get
+        - kubectl_logs
+        - kubectl_describe
+        - list_api_resources
       type: McpServer
     - mcpServer:
         apiGroup: kagent.dev
