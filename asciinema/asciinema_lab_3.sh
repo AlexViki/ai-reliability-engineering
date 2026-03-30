@@ -23,3 +23,15 @@ sleep 3s && echo -e "###########################################################
 echo -e "- Checking logs of custom memory-mcp Pod:"
 kubectl logs -l app.kubernetes.io/name=memory-mcp -n kagent --tail=10
 sleep 3s && echo -e "###############################################################################################################"
+
+echo -e "- Checking deployed Agents:"
+kubectl get agents -n kagent
+sleep 3s && echo -e "###############################################################################################################"
+
+echo -e "- Checking mcp-inspector-ui Service ports (Lab-3 requirement):"
+kubectl get svc mcp-inspector-ui -n kagent
+sleep 3s && echo -e "###############################################################################################################"
+
+echo -e "- Verifying mcp-inspector-ui is running with auth disabled:"
+kubectl logs -l app=mcp-inspector-ui -n kagent --tail=15 | grep -E "Proxy server listening|Authentication is disabled"
+sleep 3s && echo -e "###############################################################################################################"
