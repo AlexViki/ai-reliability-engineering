@@ -92,7 +92,7 @@ spec:
   ports:
     - protocol: TCP
       name: ui
-      port: 5173
+      port: 6274
       targetPort: 6274
     - protocol: TCP
       name: proxy
