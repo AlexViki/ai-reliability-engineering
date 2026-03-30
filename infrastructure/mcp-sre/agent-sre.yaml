@@ -30,8 +30,11 @@ spec:
     args:
     - "-c"
     - |
-      if [ ! -f /usr/local/bin/kubectl ]; then
-        node -e "const https=require('https'),fs=require('fs');function dl(url,cb){https.get(url,r=>{if([301,302,307,308].includes(r.statusCode))return dl(r.headers.location,cb);const f=fs.createWriteStream('/usr/local/bin/kubectl');r.pipe(f);f.on('finish',cb)}).on('error',e=>{process.stderr.write(e.message+'\n');process.exit(1)})}; dl('https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl',()=>process.exit(0))"
+      if [ ! -f /usr/local/bin/kubectl-bin ]; then
+        node -e "const https=require('https'),fs=require('fs');function dl(url,cb){https.get(url,r=>{if([301,302,307,308].includes(r.statusCode))return dl(r.headers.location,cb);const f=fs.createWriteStream('/usr/local/bin/kubectl-bin');r.pipe(f);f.on('finish',cb)}).on('error',e=>{process.stderr.write(e.message+'\n');process.exit(1)})}; dl('https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl',()=>process.exit(0))"
+        chmod +x /usr/local/bin/kubectl-bin
+        echo '#!/bin/sh' > /usr/local/bin/kubectl
+        echo 'exec /usr/local/bin/kubectl-bin --server=https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --token="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" "$@"' >> /usr/local/bin/kubectl
         chmod +x /usr/local/bin/kubectl
       fi
       exec npx -y mcp-server-kubernetes
