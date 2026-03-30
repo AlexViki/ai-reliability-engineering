@@ -67,6 +67,7 @@ spec:
         - |
           export PATH=$PATH:/shared
           export HOST=0.0.0.0
+          export DANGEROUSLY_OMIT_AUTH=true
           npx -y @modelcontextprotocol/inspector@0.21.1
         ports:
         - containerPort: 6274
