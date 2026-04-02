@@ -33,6 +33,11 @@ asciinema upload ./asciinema/lab_3.cast
 asciinema upload ./asciinema/lab_4.cast
 ```
 
+### Links:
+```
+lab_4: https://asciinema.org/a/uuAfft1ulEpOMFRx
+```
+
 ## Replay directly in a terminal
 To replay a recording in your terminal use the play command
 ```bash
