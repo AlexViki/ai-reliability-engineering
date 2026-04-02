@@ -31,3 +31,5 @@ resources:
 # - self-host/rbac.yaml
 # - self-host/deployment.yaml
 # - self-host/service.yaml
+##############################################
+- a2a-custom-agent/agent.yaml

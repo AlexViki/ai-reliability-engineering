@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: a2a-agent-config
+  namespace: kagent
+data:
+  app.py: |
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+    import json
+
+    class A2AHandler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            if self.path == '/.well-known/agent-card.json':
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                card = {
+                    "name": "Custom-Lab4-Agent",
+                    "description": "A2A Agent created for Lab 4",
+                    "icon_url": "https://a2a-protocol.org/icon.png",
+                    "version": "1.0.0",
+                    "supported_interfaces": [
+                        {"url": "http://a2a-custom-agent.kagent.svc.cluster.local:8080/protocol", "protocol": "HTTP"}
+                    ],
+                    "capabilities": {"streaming": False},
+                    "default_input_modes": ["text/plain"],
+                    "default_output_modes": ["text/plain"],
+                    "skills": [
+                        {
+                            "id": "echo-skill",
+                            "name": "Echo Skill",
+                            "description": "Echoes back the input",
+                            "input_modes": ["text/plain"],
+                            "output_modes": ["text/plain"]
+                        }
+                    ]
+                }
+                self.wfile.write(json.dumps(card).encode('utf-8'))
+            else:
+                self.send_response(200)
+                self.send_header('Content-type', 'text/plain')
+                self.end_headers()
+                self.wfile.write(b"A2A Custom Agent Running")
+
+    if __name__ == '__main__':
+        server = HTTPServer(('0.0.0.0', 8080), A2AHandler)
+        print("Agent started on port 8080")
+        server.serve_forever()
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a2a-custom-agent
+  namespace: kagent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a2a-custom-agent
+  template:
+    metadata:
+      labels:
+        app: a2a-custom-agent
+    spec:
+      containers:
+      - name: a2a-server
+        image: python:3.11-alpine
+        command: ["python", "-u", "/app/app.py"]
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: script-volume
+          mountPath: /app
+      volumes:
+      - name: script-volume
+        configMap:
+          name: a2a-agent-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: a2a-custom-agent
+  namespace: kagent
+spec:
+  selector:
+    app: a2a-custom-agent
+  ports:
+  - port: 8080
+    targetPort: 8080
