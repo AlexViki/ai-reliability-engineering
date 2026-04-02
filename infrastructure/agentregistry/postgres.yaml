@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-vector
+  namespace: agentregistry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-vector
+  template:
+    metadata:
+      labels:
+        app: postgres-vector
+    spec:
+      containers:
+      - name: postgres
+        image: pgvector/pgvector:pg15
+        env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+        - name: POSTGRES_USER
+          value: agentregistry
+        - name: POSTGRES_DB
+          value: agentregistry
+        ports:
+        - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-vector
+  namespace: agentregistry
+spec:
+  selector:
+    app: postgres-vector
+  ports:
+  - port: 5432
+    targetPort: 5432

@@ -1,0 +1,16 @@
+apiVersion: agentregistry.dev/v1alpha1
+kind: DiscoveryConfig
+metadata:
+  name: environments
+  namespace: agentregistry
+spec:
+  environments:
+    - name: aire
+      cluster:
+        name: aire
+      namespaces:
+        - default
+        - kagent
+        - agentgateway-system
+      resourceTypes: [MCPServer, Agent, ModelConfig]
+      discoveryEnabled: true
