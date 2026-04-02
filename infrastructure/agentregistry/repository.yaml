@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: agentregistry
+  namespace: flux-system
+spec:
+  interval: 2h
+  url: oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry
+  ref:
+    tag: "0.3.2"

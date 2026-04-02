@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: agentregistry
+  namespace: agentregistry
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: agentregistry
+    namespace: flux-system
+  values:
+    database:
+      postgres:
+        vectorEnabled: true
+        url: "postgres://agentregistry:mysecretpassword@postgres-vector.agentregistry.svc.cluster.local:5432/agentregistry?sslmode=disable"
+    config:
+      jwtPrivateKey: "ebddab4d6428ce0a4d5ebd538ba7b30f"
