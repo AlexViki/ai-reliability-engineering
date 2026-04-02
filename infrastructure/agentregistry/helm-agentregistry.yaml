@@ -15,4 +15,4 @@ spec:
       postgres:
         vectorEnabled: true
     config:
-      jwtPrivateKey: "ebddab4d6428ce0a4d5ebd538ba7b30f"
+      jwtPrivateKey: "deadbeef1234567890abcdef12345678deadbeef1234567890abcdef12345678"
