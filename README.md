@@ -21,7 +21,7 @@ As DevOps/SRE roles evolve, building and scaling infrastructure for AI becomes a
 ### 🤖 Agentic AI & AI Gateways
 * Deployment of **AI Agents** in Kubernetes.
 * Implementing **AI Gateways**: Rate limiting, semantic caching, and authorization.
-* Hands-on with **MCP (Model Context Protocol)**, A2A, Kagent, and AgentGateway.
+* Hands-on with **MCP (Model Context Protocol)**, A2A, [Kagent](https://kagent.dev/docs/kagent), and [AgentGateway](https://agentgateway.dev/docs/kubernetes/latest/).
 
 ### 📊 AI Observability & Reliability
 * Instrumenting applications for model response tracing.
