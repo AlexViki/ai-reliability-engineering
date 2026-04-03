@@ -7,7 +7,7 @@ This repository contains materials, configurations, and practical assignments fo
 ## 🎯 Course Overview
 As DevOps/SRE roles evolve, building and scaling infrastructure for AI becomes a critical market requirement. This course covers the transition from standard pipelines to automated, agentic AI infrastructures within Kubernetes.
 
-**Mentor:** Denys Vasyliev (Principal SRE / UK Global Talent Visa Holder)
+**Mentor:** [Denys Vasyliev](https://github.com/den-vasyliev) (Principal SRE / UK Global Talent Visa Holder)
 
 ---
 
