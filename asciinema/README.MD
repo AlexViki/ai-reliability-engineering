@@ -34,6 +34,7 @@ asciinema upload ./asciinema/lab_4.cast
 ```
 
 ### Links:
+[MCP Inspector UI](https://asciinema.org/a/jLhcconOB0kekkzx)
 [A2A Protocol, Custom Agents, and AI Inventory](https://asciinema.org/a/uuAfft1ulEpOMFRx)
 
 ## Replay directly in a terminal
