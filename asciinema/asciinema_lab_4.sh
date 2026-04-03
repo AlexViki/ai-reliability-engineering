@@ -22,8 +22,6 @@ sleep 3s && echo -e "###########################################################
 
 echo -e "- Checking Agent Card payload deployed inside the cluster (app.py):"
 kubectl get configmap a2a-agent-config -n kagent -o jsonpath='{.data.app\.py}' | head -n 30
-echo "..."
-echo ""
 sleep 3s && echo -e "###############################################################################################################"
 
 echo -e "- Retrieving all discovered AI Resources in the Cluster (Inventory via Native APIs):"
@@ -36,4 +34,4 @@ sleep 3s && echo -e "###########################################################
 
 echo -e "- Checking A2A Agent Service:"
 curl -s http://localhost:8080/.well-known/agent-card.json | jq
-sleep 3s && echo -e "###############################################################################################################"
+echo -e "###############################################################################################################"

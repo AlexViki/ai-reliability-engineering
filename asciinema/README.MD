@@ -35,7 +35,7 @@ asciinema upload ./asciinema/lab_4.cast
 
 ### Links:
 [MCP Inspector UI](https://asciinema.org/a/jLhcconOB0kekkzx)
-[A2A Protocol, Custom Agents, and AI Inventory](https://asciinema.org/a/uuAfft1ulEpOMFRx)
+[A2A Protocol, Custom Agents, and AI Inventory](https://asciinema.org/a/bxA3hPFtV0Ztwe7Y)
 
 ## Replay directly in a terminal
 To replay a recording in your terminal use the play command
